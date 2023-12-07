@@ -1,10 +1,9 @@
-# No código do Estado, ajuste o nome da variável 'transiction' para 'transition'
 class Estado:
-    def __init__(self, name, state, alphabet, transition):
+    def __init__(self, name, state, alphabet, transiction):
         self.name = name
         self.isEndState = state
         self.alphabet = alphabet
-        self.transition = transition
+        self.transiction = transiction
 
     def __str__(self):
         return self.name
@@ -13,4 +12,4 @@ class Estado:
         return self.__str__()
 
     def move(self, letter):
-        return self.transition[letter]
+        return self.transiction[letter]

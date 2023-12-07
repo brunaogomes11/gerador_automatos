@@ -37,38 +37,28 @@ class Automato:
         return True
 
     def testAutomato(self, word):
-        if not word:  # Verifica se a palavra é vazia
-            if self.isEndState(self.getStateByName(self.__initialState)):
-                print("A PALAVRA PERTENCE AO AUTÔMATO!")
-            else:
-                print("A PALAVRA NÃO PERTENCE AO AUTÔMATO!")
-            return
-
         word = list(word)
 
-        if self.isValidAlphabet(word):
+        if(self.isValidAlphabet(word)):
             states = []
             endState = self.getStateByName(self.__initialState)
 
             states.append(endState.name)
 
             for letter in word:
-                try:
-                    endState = self.getStateByName(endState.move(letter))
-                    states.append(endState.name)
-                except KeyError:
-                    print(f"Transição não definida para o símbolo '{letter}' no estado '{endState.name}'")
-                    return
+                endState = self.getStateByName(endState.move(letter))
+                states.append(endState.name)
 
             states = "; ".join(states)
             print("\nEstados: " + states)
 
-            if self.isEndState(endState):
+            if endState.isEndState:
                 print("A PALAVRA PERTENCE AO AUTÔMATO!")
             else:
                 print("A PALAVRA NÃO PERTENCE AO AUTÔMATO!")
         else:
-            print("A PALAVRA NÃO PERTENCE AO ALFABETO DO AUTÔMATO :(")
+            print(
+                "A PALAVRA NÃO PERTENCE AO ALFABETO DO AUTÔMATO :(")
 
     def __str__(self):
         transictions = []
